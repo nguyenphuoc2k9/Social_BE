@@ -178,8 +178,24 @@ const EditPost = async (req,res)=>{
         return res.status(400).json({message:e.message})
     }
 }
+const DeletePost = async(req,res)=>{
+    try{
+        const {id} = req.params
+        if(id){
+            const post = await PostModel.findOneAndDelete({_id:id})
+            const posts = await PostModel.find()
+
+            return res.status(200).json(posts)
+        }else{
+            throw new Error("Invalid post id")
+        }
+    }catch(E){
+        return res.status(400).json({message:E.message})
+    }
+}
 export const PostController = {
     getAllPost,
+    DeletePost,
     getUserPosts,
     createPost,
     likePost,

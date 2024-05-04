@@ -17,3 +17,5 @@ PostRouter.patch("/:id/like",VerifyToken,PostController.likePost)
 PostRouter.patch("/:id/comment",VerifyToken,PostController.CreateComment)
 
 PostRouter.patch("/:id/patch",VerifyToken,upload.single("picture"),PostController.EditPost)
+
+PostRouter.delete("/:id/delete",VerifyToken,PostController.DeletePost)
